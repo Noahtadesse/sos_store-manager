@@ -13,10 +13,16 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Print working directory
+      run: pwd
+
+    - name: List directory contents
+      run: ls -R sos_store-manager/sos_store-management
+
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '3.19.0'  # Use the correct Flutter version
+        flutter-version: '3.19.0'
 
     - name: Install dependencies
       run: flutter pub get
