@@ -18,14 +18,19 @@ jobs:
       with:
         flutter-version: '3.19.0'
 
+    - name: Change directory to flutter-app
+      run: cd flutter-app
+
     - name: Install dependencies
       run: flutter pub get
+      working-directory: flutter-app
 
     - name: Build web app
       run: flutter build web
+      working-directory: flutter-app
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: build/web
+        publish_dir: flutter-app/build/web
