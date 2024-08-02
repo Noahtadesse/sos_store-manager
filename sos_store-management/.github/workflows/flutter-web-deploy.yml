@@ -16,16 +16,18 @@ jobs:
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '3.19.0'  # Ensure you use the correct version
+        flutter-version: 'stable'  # Ensure the Flutter version is correct
 
     - name: Install dependencies
       run: flutter pub get
+      working-directory: ${{ github.workspace }}  # Ensure it points to the root
 
     - name: Build web app
       run: flutter build web
+      working-directory: ${{ github.workspace }}  # Ensure it points to the root
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: build/web  # Adjust based on actual build output directory
+        publish_dir: build/web
